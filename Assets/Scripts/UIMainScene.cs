@@ -12,18 +12,18 @@ public class UIMainScene : MonoBehaviour
 {
 
     public TMP_Text highScoreText;
-    public InputField nameInputField;
+    public TMP_InputField nameInputField;
     public Button startButton;
     public Button exitButton;
 
-    private void Start()
-    {
-        
-    }
-
     public void StartNew()
     {
-        SceneManager.LoadScene(1);
+        if(nameInputField.text != "")
+        {
+            InputName();
+            SceneManager.LoadScene(1);
+
+        }
     }
 
     public void Exit()
@@ -33,5 +33,11 @@ public class UIMainScene : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    public void InputName()
+    {        
+        DataManager.instance.nameInput = nameInputField.text;   
+        
     }
 }
